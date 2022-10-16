@@ -1,6 +1,16 @@
 # BCC-LoadScreen
 > A Replacement for the standard RedM Server Loading screen
 
+Demos:
+
+> Background Image 
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/mZIaymjOC5w/0.jpg)](https://www.youtube.com/watch?v=mZIaymjOC5w)
+
+> Background Youtube Video
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/g0xXNPZvI5w/0.jpg)](https://www.youtube.com/watch?v=g0xXNPZvI5w)
+
 ## Features
 - Youtube video support
 - Local Image Support
