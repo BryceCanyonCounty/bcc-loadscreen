@@ -1,6 +1,10 @@
 # BCC-LoadScreen
 > A Replacement for the standard RedM Server Loading screen
 
+
+https://user-images.githubusercontent.com/10902965/196018238-64460919-afbf-48f7-8dc9-2f7f12d81a39.mp4
+
+
 ## Features
 - Youtube video support
 - Local Image Support
@@ -22,6 +26,6 @@
 ## Requirements
 - MUST HAVE [**BCC-LOADINGSCREEN-HELPER**](https://github.com/BryceCanyonCounty/bcc-loadscreen-helper)
 
-## TODO
+## Coming Soon!
 - Add Local Video File Support
 - Add audio file support
