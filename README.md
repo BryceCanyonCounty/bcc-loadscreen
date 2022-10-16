@@ -1,8 +1,7 @@
 # BCC-LoadScreen
 > A Replacement for the standard RedM Server Loading screen
 
-
-https://user-images.githubusercontent.com/10902965/196018238-64460919-afbf-48f7-8dc9-2f7f12d81a39.mp4
+https://user-images.githubusercontent.com/10902965/196018821-d59a2341-d560-4147-add5-469212a34748.mp4
 
 
 ## Features
