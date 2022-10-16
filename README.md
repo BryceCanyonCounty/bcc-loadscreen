@@ -9,7 +9,7 @@
 
 ### Install
 * Download this repo
-* Download the bcc-loadscreen-helper repo
+* Download the [bcc-loadscreen-helper](https://github.com/BryceCanyonCounty/bcc-loadscreen-helper) repo
 * Copy and paste `bcc-loadscreen` folder to `resources/bcc-loadscreen`
 * Copy and paste `bcc-loadscreen-helper` folder to `resources/bcc-loadscreen-helper`
 * Add `ensure bcc-loadscreen` to the top of your `server.cfg` file
@@ -20,7 +20,7 @@
 - [Vorp Disord](https://discord.gg/DHGVAbCj7N)
 
 ## Requirements
-- MUST HAVE **BCC-LOADINGSCREEN-HELPER**
+- MUST HAVE [**BCC-LOADINGSCREEN-HELPER**](https://github.com/BryceCanyonCounty/bcc-loadscreen-helper)
 
 ## TODO
 - Add Local Video File Support
