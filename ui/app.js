@@ -1,7 +1,4 @@
 const { createApp } = Vue;
-window.addEventListener("message", function (e) {
-  console.log(e.data.eventName);
-});
 
 createApp({
   data() {
@@ -12,10 +9,10 @@ createApp({
     };
   },
   mounted() {
-    console.log(CONFIG)
     window.addEventListener("message", function (e) {
       console.log(e.data.eventName);
     });
+
     this.timer = setInterval(() => {
       fetch(`https://bcc-loadscreen-helper/isgameinitiated`, {
         method: "POST",
@@ -28,6 +25,16 @@ createApp({
           clearInterval(this.timer)
         }
       });
+
+      if (this.config.video) {
+        var vid = document.getElementById("videocomp");
+        vid.volume = this.config.videovolume;
+      }
+  
+      if (this.config.audio) {
+        var vid = document.getElementById("audiocomp");
+        vid.volume = this.config.audiovolume;
+      }
     }, 20000);
   },
   destroyed() {

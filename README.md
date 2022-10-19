@@ -12,9 +12,11 @@ Demos:
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/g0xXNPZvI5w/0.jpg)](https://www.youtube.com/watch?v=g0xXNPZvI5w)
 
 ## Features
-- Youtube video support
+- Local Video Support
+- Youtube video Support
 - Local Image Support
 - Web Image Support
+- Local Audio Support
 - 3 preset CSS Loading Icons
 
 ### Install
@@ -33,5 +35,7 @@ Demos:
 - MUST HAVE [**BCC-LOADINGSCREEN-HELPER**](https://github.com/BryceCanyonCounty/bcc-loadscreen-helper)
 
 ## Coming Soon!
-- Add Local Video File Support
-- Add audio file support
+- Disable the default redm loadscreen audio so that the custom video/audio is played by itself.
+- Mute sound with spacebar
+- Current time vs Time elapsed 
+- More loading icons

@@ -19,6 +19,12 @@ body {
   color: var(--color);
 }
 
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .background {
   background-color: var(--backgroundcolor);
   background-size: cover;
