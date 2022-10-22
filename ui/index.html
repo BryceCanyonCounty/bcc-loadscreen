@@ -6,32 +6,62 @@
   <body>
     <div id="app">
       <div class="wrapper background" :style="cssvars" v-if="config.image && visible">
-        <div class="loader" v-if="config.loading.active">
-          <div class="loader1"  v-if="config.loading.icon == 'linedots'">
+        <div class="loader">
+          <div class="elapsed" v-if="config.timeelapsed">{{elapsedtime}}</div>
+          <div class="skip" v-if="loading == false && config.loadtime.skip "> {{ config.loadtime.lang }} </div>
+          <div class="loader1"  v-if="config.loading.icon == 'linedots' && config.loading.active">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
             <span></span>
           </div>
-          <div class="loader3"  v-if="config.loading.icon == 'fadedots'">
+          <div class="loader3"  v-if="config.loading.icon == 'fadedots' && config.loading.active">
             <span></span>
             <span></span>
           </div>
-          <div class="loader4"  v-if="config.loading.icon == 'circle'"></div>
+          <div class="loader4"  v-if="config.loading.icon == 'circle' && config.loading.active"></div>
         </div>
       </div>
       <div class="wrapper" :style="cssvars" v-if="config.video && visible">
-        <video if="videocomp" width="320" height="240" controls="false" autoplay playsinline loop>
+        <video id="videocomp" width="320" height="240" controls="false" autoplay playsinline loop>
           <source :src="config.videosrc" type="video/mp4">
           Your browser does not support the video tag.
         </video>
+        <div class="elapsed" v-if="config.timeelapsed">{{elapsedtime}}</div>
+        <div class="skip" v-if="loading == false && config.loadtime.skip"> {{ config.loadtime.lang }} </div>
+        <div class="loader1"  v-if="config.loading.icon == 'linedots' && config.loading.active">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="loader3"  v-if="config.loading.icon == 'fadedots' && config.loading.active">
+          <span></span>
+          <span></span>
+        </div>
+        <div class="loader4"  v-if="config.loading.icon == 'circle' && config.loading.active"></div>
       </div>
       <div class="wrapper" :style="cssvars" v-if="config.audio && visible">
         <audio autoplay id="audiocomp">
           <source :src="config.audiosrc" type="audio/mpeg">
           Your browser does not support the audio element.
         </audio>
+        <div class="elapsed" v-if="config.timeelapsed">{{elapsedtime}}</div>
+        <div class="skip" v-if="loading == false && config.loadtime.skip"> {{ config.loadtime.lang }} </div>
+        <div class="loader1"  v-if="config.loading.icon == 'linedots' && config.loading.active">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="loader3"  v-if="config.loading.icon == 'fadedots' && config.loading.active">
+          <span></span>
+          <span></span>
+        </div>
+        <div class="loader4"  v-if="config.loading.icon == 'circle' && config.loading.active"></div>
       </div>
       <div class="wrapper" :style="cssvars" v-if="config.yt && visible">
         <iframe id="video" 
@@ -40,6 +70,8 @@
         controls="0"
         frameborder="0"
         allowfullscreen></iframe>
+        <div class="elapsed" v-if="config.timeelapsed">{{elapsedtime}}</div>
+        <div class="skip" v-if="loading == false && config.loadtime.skip"> {{ config.loadtime.lang }} </div>
         <div class="loader" v-if="config.loading.active">
           <div class="loader1"  v-if="config.loading.icon == 'linedots'">
             <span></span>

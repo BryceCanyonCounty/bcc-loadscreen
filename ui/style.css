@@ -1,3 +1,5 @@
+/* TODO: Break this file into a few different css files */
+
 @font-face {
   font-family: rdr;
   src: url(assets/fonts/rdrlino-regular-webfont.woff);
@@ -25,6 +27,29 @@ video {
   object-fit: cover;
 }
 
+.loader {
+  position: absolute;
+  bottom: 60px;
+  right: 60px;
+  left: 60px;
+}
+
+.elapsed {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  color: white;
+}
+
+.skip {
+  font-size: 30px;
+  color: white;
+  display: inline-block;
+  vertical-align: middle;
+  width: 80%;
+  margin: 0 auto;
+}
+
 .background {
   background-color: var(--backgroundcolor);
   background-size: cover;
@@ -49,11 +74,14 @@ video {
   z-index: 999999;
 }
 
-
 .loader1 {
   display:inline-block;
   font-size:0px;
   padding:0px;
+  vertical-align: middle;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
 }
 .loader1 span {
   vertical-align:middle;
@@ -108,19 +136,16 @@ video {
   to {-webkit-transform: scale(1, 1);}
 }
 
-.loader {
-  position: absolute;
-  bottom: 60px;
-  right: 60px;
-}
-
-
 .loader3 {
   width:50px;
   height:50px;
   display:inline-block;
   padding:0px;
   text-align:left;
+  vertical-align: middle;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
 }
 .loader3 span {
   position:absolute;
@@ -151,6 +176,7 @@ video {
   width:45px;
   height:45px;
   display:inline-block;
+  vertical-align: middle;
   padding:0px;
   border-radius:100%;
   border:5px solid;
@@ -160,6 +186,9 @@ video {
   border-right-color:rgba(255,255,255, 0.3);
   -webkit-animation: loader4 1s ease-in-out infinite;
   animation: loader4 1s ease-in-out infinite;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
 }
 @keyframes loader4 {
   from {transform: rotate(0deg);}

@@ -13,6 +13,14 @@ CONFIG = {
     audio: false,
     audiosrc: 'nui://bcc-loadscreen/ui/assets/music.mp3',
     audiovolume: 0.5, //between 0-1
+
+    timeelapsed: true,
+
+    loadtime: {
+        minimum: 0, //miliseconds
+        skip: false,
+        lang: "Press Space to Skip Load Screen"
+    },
     
     loading: {
         active: true, //Do you want the loading icon to show

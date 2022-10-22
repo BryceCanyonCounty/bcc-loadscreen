@@ -18,6 +18,8 @@ Demos:
 - Web Image Support
 - Local Audio Support
 - 3 preset CSS Loading Icons
+- Custom loadscreen minimum duration
+- Time elapsed
 
 ### Install
 * Download this repo
@@ -36,6 +38,4 @@ Demos:
 
 ## Coming Soon!
 - Disable the default redm loadscreen audio so that the custom video/audio is played by itself.
-- Mute sound with spacebar
-- Current time vs Time elapsed 
 - More loading icons
