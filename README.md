@@ -17,7 +17,7 @@ Demos:
 - Local Image Support
 - Web Image Support
 - Local Audio Support
-- 3 preset CSS Loading Icons
+- 12 preset CSS [Loading Icons](https://github.com/BryceCanyonCounty/bcc-loadscreen/wiki/Loading-Spinner-Options)
 - Time elapsed
 
 ### Install
@@ -29,6 +29,9 @@ Demos:
 * Add `ensure bcc-loadscreen-helper` below the above ensured in your `server.cfg` file
 * Now you are ready to go!
 
+## Migrating to 1.1.0+
+[Migration Guide](https://github.com/BryceCanyonCounty/bcc-loadscreen/wiki/Migration-Guide-(1.0.2----1.1.0))
+
 ## Need More Support? 
 - [Vorp Disord](https://discord.gg/DHGVAbCj7N)
 
@@ -37,4 +40,3 @@ Demos:
 
 ## Coming Soon!
 - Disable the default redm loadscreen audio so that the custom video/audio is played by itself.
-- More loading icons
