@@ -14,6 +14,7 @@ files {
     'ui/*',
     'ui/assets/*',
     'ui/assets/fonts/*',
+    'ui/assets/styles/*',
     'config.js'
 }
 
