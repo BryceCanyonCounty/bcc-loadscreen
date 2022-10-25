@@ -1,6 +1,11 @@
 const { createApp } = Vue;
 
-createApp({
+var tag = document.createElement("script");
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName("script")[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+let vueApp = createApp({
   data() {
     return {
       visible: true,
@@ -8,53 +13,56 @@ createApp({
       config: CONFIG,
       override: false,
       timeout: null,
-      done: false,
       loading: false,
       elapsedtime: null,
       elapsedtimer: null,
-      starttime: null
+      starttime: null,
+      player: null
     };
   },
   mounted() {
-    this.done = false
-    this.loading = true
+    this.loading = true;
 
-    this.timeout = setTimeout(() => {
-      this.done = true
-    }, this.config.loadtime.minimum)
+    this.startCallback();
 
-    this.startCallback()
-
-    this.starttime = Date.now()
-
+    this.starttime = Date.now();
     if (this.config.timeelapsed) {
       this.elapsedtimer = setInterval(() => {
-        let d = Date.now() - this.starttime
-  
+        let d = Date.now() - this.starttime;
+
         var msec = d;
-  
+
         var hour = Math.floor(msec / 1000 / 60 / 60);
         msec -= hour * 1000 * 60 * 60;
         var min = Math.floor(msec / 1000 / 60);
         msec -= min * 1000 * 60;
         var sec = Math.floor(msec / 1000);
         msec -= sec * 1000;
-  
-  
-        this.elapsedtime = `${hour != 0 ? hour + 'h ' : ''}${min != 0 ? min + 'm ' : ''}${sec}s`
+
+        this.elapsedtime = `${hour != 0 ? hour + "h " : ""}${
+          min != 0 ? min + "m " : ""
+        }${sec}s`;
       }, 1000);
     }
 
-    // Set volume for the video
-    if (this.config.video) {
+    if (this.config.video.active) {
       var vid = document.getElementById("videocomp");
-      vid.volume = this.config.videovolume;
+      vid.volume = this.config.video.volume;
+
+      vid.addEventListener(
+        "ended",
+        () => {
+          this.visible = false;
+          clearInterval(this.timer);
+        },
+        false
+      );
     }
 
     // Set volume for the audio
-    if (this.config.audio) {
+    if (this.config.audio.active) {
       var vid = document.getElementById("audiocomp");
-      vid.volume = this.config.audiovolume;
+      vid.volume = this.config.audio.volume;
     }
   },
   destroyed() {
@@ -77,13 +85,48 @@ createApp({
     cssvars() {
       return {
         "--color": "#fff",
-        "--backgroundcolor": this.config.backgroundcolor,
-        "--backgroundimage": this.config.imagesource,
+        "--backgroundcolor": this.config.image.backgroundcolor,
+        "--backgroundimage": this.config.image.source,
         "--loadingcolor": this.config.loading.color,
       };
     },
   },
   methods: {
+    initYoutube() {
+      const that = this;
+
+      if (this.config.youtube.active) {
+        this.player = new YT.Player("ytplayer", {
+          width: window.innerWidth,
+          height: window.innerHeight,
+          videoId: this.config.youtube.source,
+          playerVars: {
+            'playsinline': 1,
+            'controls': 0,
+            'mute': this.config.youtube.mute,
+            'autoplay': 1
+          },
+          events: {
+            onReady: that.onPlayerReady,
+            onStateChange: that.onPlayerStateChange
+          }
+        });
+      }
+    },
+    onPlayerReady(evt) {
+      evt.target.setVolume(this.config.youtube.volume);
+      evt.target.playVideo();
+    },
+    onPlayerStateChange(evt) {
+      if (evt.data === 0) {
+        if (this.config.youtube.looped) {
+          this.player.playVideo(); 
+        } else if (this.visible) {
+          this.visible = false;
+          clearInterval(this.timer);
+        }
+      }
+    },
     onMessage(event) {
       if (event.data.action === "toggle") {
         this.visible = !this.visible;
@@ -99,23 +142,29 @@ createApp({
         })
           .then((resp) => resp.json())
           .then((resp) => {
-            if (resp.online) {
-              this.loading = false
-              if (this.done) {
+            this.loading = false;
+            if (resp.spacebar == true && this.config.loadtime.skip) {
+              this.visible = false;
+              clearInterval(this.timer);
+            } else if (resp.online) {
+              this.loading = false;
+
+              let isvideolooped = this.config.video.looped == false && this.config.video.active == true
+              let isYTlooped = this.config.youtube.looped == false && this.config.youtube.active == true
+
+              if (!(isvideolooped || isYTlooped)) {
                 this.visible = false;
                 clearInterval(this.timer);
               }
             }
-
-            if (resp.spacebar == true && this.config.loadtime.skip) {
-                this.loading = false
-                this.visible = false;
-                clearInterval(this.timer);
-                clearTimeout(this.timeout)
-            }
           })
-          .catch(e => {})
+          .catch((e) => {});
       }, 10000);
     },
   },
 }).mount("#app");
+
+// Youtube API Shim for vue
+window.onYouTubeIframeAPIReady = () => {
+  vueApp.initYoutube()
+};

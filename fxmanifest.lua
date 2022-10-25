@@ -10,6 +10,7 @@ loadscreen_manual_shutdown "yes"
 files {
     'ui/index.html',
     'ui/vendor/vue.js',
+    'ui/vendor/vue-youtube/vue-youtube.js',
     'ui/*',
     'ui/assets/*',
     'ui/assets/fonts/*',
@@ -21,6 +22,6 @@ ui_page 'ui/index.html'
 
 loadscreen_cursor 'yes'
 
-version '1.0.2'
+version '1.1.0'
 
 resource_manifest_version '77731fab-63ca-442c-a67b-abc70f28dfa5'

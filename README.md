@@ -18,7 +18,6 @@ Demos:
 - Web Image Support
 - Local Audio Support
 - 3 preset CSS Loading Icons
-- Custom loadscreen minimum duration
 - Time elapsed
 
 ### Install
