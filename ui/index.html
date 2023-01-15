@@ -14,7 +14,10 @@
         <div v-if="config.youtube.active">
           <div id="ytplayer"></div>
         </div>
-
+        <video id="videocomp" v-if="config.googledrive.active" width="320" height="240" :controls="false" autoplay playsinline :muted="config.googledrive.mute" :loop="config.googledrive.looped" >
+          <source :src="`https://drive.google.com/uc?export=download&id=${config.googledrive.source}`" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
         <div class="elapsed" v-if="config.timeelapsed">{{elapsedtime}}</div>
         <div class="skip" v-if="config.loadtime.skip && loading == false">{{ config.loadtime.lang }} </div>
         <div class="loader1"  v-if="config.loading.icon == 'linedots' && config.loading.active">

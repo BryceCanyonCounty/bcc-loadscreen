@@ -18,6 +18,13 @@ CONFIG = {
         mute: false,
         volume: 50 // 0 - 100
     },
+    googledrive: {
+        active: true, //If you want a youtube video make this flag true (but make sure image/video is false)
+        source: "<YOUR VIDEO ID>", //ID of your google drive video. 1: Make the video shared with anyone with the link, then copy the link Example: https://drive.google.com/file/d/<YOUR VIDEO ID>/view
+        looped: false, // If the video is not looped then the loadscreen will "close" when the video ends. otherwise it will loop until the loading is actually done.
+        mute: false,
+        volume: 0.5, //between 0-1
+    },
     audio: {
         active: false,
         source: 'nui://bcc-loadscreen/ui/assets/music.mp3',
