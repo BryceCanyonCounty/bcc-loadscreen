@@ -33,7 +33,7 @@ Demos:
 [Migration Guide](https://github.com/BryceCanyonCounty/bcc-loadscreen/wiki/Migration-Guide-(1.0.2----1.1.0))
 
 ## Need More Support? 
-- [Vorp Disord](https://discord.gg/DHGVAbCj7N)
+- [BCC Discord](https://discord.gg/cQMJaTqcqJ)
 
 ## Requirements
 - MUST HAVE [**BCC-LOADINGSCREEN-HELPER**](https://github.com/BryceCanyonCounty/bcc-loadscreen-helper)
