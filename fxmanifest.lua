@@ -6,7 +6,7 @@ lua54 'yes'
 
 author 'Bytesizd'
 description 'Customizable loadscreen'
-loadscreen_manual_shutdown "yes"
+
 files {
     'ui/index.html',
     'ui/vendor/vue.js',
@@ -18,11 +18,6 @@ files {
     'config.js'
 }
 
-loadscreen 'ui/index.html'
 ui_page 'ui/index.html'
 
-loadscreen_cursor 'yes'
-
-version '1.1.1'
-
-resource_manifest_version '77731fab-63ca-442c-a67b-abc70f28dfa5'
+version '1.1.2'

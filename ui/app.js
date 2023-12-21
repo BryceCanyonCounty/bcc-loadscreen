@@ -66,8 +66,6 @@ let vueApp = createApp({
     }
   },
   destroyed() {
-    window.removeEventListener("message");
-
     this.yt = false;
     this.image = false;
 
@@ -127,14 +125,9 @@ let vueApp = createApp({
         }
       }
     },
-    onMessage(event) {
-      if (event.data.action === "toggle") {
-        this.visible = !this.visible;
-      }
-    },
     startCallback() {
       this.timer = setInterval(() => {
-        fetch(`https://bcc-loadscreen-helper/isgameinitiated`, {
+        fetch(this.config.feathercore.active ? `https://feather-core/isgameinitiated` : `https://bcc-loadscreen-helper/isgameinitiated`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json; charset=UTF-8",
