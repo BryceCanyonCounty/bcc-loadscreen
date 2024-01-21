@@ -50,6 +50,8 @@ video {
   background-image: var(--backgroundimage);
   background-repeat: no-repeat;
   background-position: center;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .wrapper {

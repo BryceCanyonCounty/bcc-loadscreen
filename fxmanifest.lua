@@ -15,9 +15,10 @@ files {
     'ui/assets/*',
     'ui/assets/fonts/*',
     'ui/assets/styles/*',
+    'ui/assets/images/*',
     'config.js'
 }
 
 ui_page 'ui/index.html'
 
-version '1.1.2'
+version '1.1.3'

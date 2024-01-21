@@ -17,7 +17,11 @@ let vueApp = createApp({
       elapsedtime: null,
       elapsedtimer: null,
       starttime: null,
-      player: null
+      player: null,
+      backgroundimage: null,
+      rotations: {
+        interval: null,
+      },
     };
   },
   mounted() {
@@ -64,6 +68,41 @@ let vueApp = createApp({
       var vid = document.getElementById("audiocomp");
       vid.volume = this.config.audio.volume;
     }
+
+    this.backgroundimage = this.config.image.source;
+
+    if (this.config.image.random.rotate.active == true) {
+      let position = 0;
+
+      if (this.config.image.random.rotate.sequenced !== true) {
+        let min = Math.ceil(0);
+        let max = Math.floor(this.config.image.random.sources.length - 1);
+        position = Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      this.backgroundimage = this.config.image.random.sources[position];
+
+      this.rotations.interval = setInterval(() => {
+        if (this.config.image.random.rotate.sequenced == true) {
+          if (position < this.config.image.random.sources.length - 1) {
+            position++;
+          } else {
+            position = 0;
+          }
+          this.backgroundimage = this.config.image.random.sources[position];
+        } else {
+          let min = Math.ceil(0);
+          let max = Math.floor(this.config.image.random.sources.length - 1);
+          let randindex = Math.floor(Math.random() * (max - min + 1)) + min;
+          this.backgroundimage = this.config.image.random.sources[randindex];
+        }
+      }, this.config.image.random.rotate.time * 1000);
+    } else if (this.config.image.random.active == true) {
+      let min = Math.ceil(0);
+      let max = Math.floor(this.config.image.random.sources.length - 1);
+      let randindex = Math.floor(Math.random() * (max - min + 1)) + min;
+      this.backgroundimage = this.config.image.random.sources[randindex];
+    }
   },
   destroyed() {
     this.yt = false;
@@ -78,13 +117,17 @@ let vueApp = createApp({
     if (video) {
       video.pause();
     }
+
+    if (this.rotations.interval) {
+      clearInterval(this.rotations.interval);
+    }
   },
   computed: {
     cssvars() {
       return {
         "--color": "#fff",
         "--backgroundcolor": this.config.image.backgroundcolor,
-        "--backgroundimage": this.config.image.source,
+        "--backgroundimage": this.backgroundimage || this.config.image.source,
         "--loadingcolor": this.config.loading.color,
       };
     },
@@ -99,15 +142,15 @@ let vueApp = createApp({
           height: window.innerHeight,
           videoId: this.config.youtube.source,
           playerVars: {
-            'playsinline': 1,
-            'controls': 0,
-            'mute': this.config.youtube.mute,
-            'autoplay': 1
+            playsinline: 1,
+            controls: 0,
+            mute: this.config.youtube.mute,
+            autoplay: 1,
           },
           events: {
             onReady: that.onPlayerReady,
-            onStateChange: that.onPlayerStateChange
-          }
+            onStateChange: that.onPlayerStateChange,
+          },
         });
       }
     },
@@ -118,7 +161,7 @@ let vueApp = createApp({
     onPlayerStateChange(evt) {
       if (evt.data === 0) {
         if (this.config.youtube.looped) {
-          this.player.playVideo(); 
+          this.player.playVideo();
         } else if (this.visible) {
           this.visible = false;
           clearInterval(this.timer);
@@ -127,12 +170,17 @@ let vueApp = createApp({
     },
     startCallback() {
       this.timer = setInterval(() => {
-        fetch(this.config.feathercore.active ? `https://feather-core/isgameinitiated` : `https://bcc-loadscreen-helper/isgameinitiated`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json; charset=UTF-8",
-          },
-        })
+        fetch(
+          this.config.feathercore.active
+            ? `https://feather-core/isgameinitiated`
+            : `https://bcc-loadscreen-helper/isgameinitiated`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json; charset=UTF-8",
+            },
+          }
+        )
           .then((resp) => resp.json())
           .then((resp) => {
             this.loading = false;
@@ -142,8 +190,12 @@ let vueApp = createApp({
             } else if (resp.online) {
               this.loading = false;
 
-              let isvideolooped = this.config.video.looped == false && this.config.video.active == true
-              let isYTlooped = this.config.youtube.looped == false && this.config.youtube.active == true
+              let isvideolooped =
+                this.config.video.looped == false &&
+                this.config.video.active == true;
+              let isYTlooped =
+                this.config.youtube.looped == false &&
+                this.config.youtube.active == true;
 
               if (!(isvideolooped || isYTlooped)) {
                 this.visible = false;
@@ -159,5 +211,5 @@ let vueApp = createApp({
 
 // Youtube API Shim for vue
 window.onYouTubeIframeAPIReady = () => {
-  vueApp.initYoutube()
+  vueApp.initYoutube();
 };

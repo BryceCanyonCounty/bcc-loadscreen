@@ -6,6 +6,20 @@ CONFIG = {
         active: true, // If you want an image background make this flag true (but make sure youtube/video is false)
         source: "url('nui://bcc-loadscreen/ui/assets/background.png')",
         backgroundcolor: "#4d4d4d",
+        random: {
+            active: false, //If set to true, a random image from Sources will be chosed on player connection. Warning: The image.source will be ignored if set to true.
+            sources: [
+                "url('nui://bcc-loadscreen/ui/assets/background.png')",
+                "url('nui://bcc-loadscreen/ui/assets/images/background1.jpg')",
+                "url('nui://bcc-loadscreen/ui/assets/images/background2.jpg')",
+                "url('nui://bcc-loadscreen/ui/assets/images/background3.jpeg')"
+            ],
+            rotate: {
+                active: false, // If true, the loadscreen will rotate between images every x seconds
+                sequenced: false,  // Images show in order, if false, random image will be chosen each time.
+                time: 5, // Roate image every x seconds
+            }
+        },
     },
     video: {
         active: false, //If you want a local video make this flag true (but make sure image/youtube is false)
